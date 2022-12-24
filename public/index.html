@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Invoice</h2>
+    <form action="/checkout-invoice" method="POST">
+        <button type="submit">Pay</button>
+    </form>
+
+    <br/>
+    <br/>
+
+    <h2>Online store</h2>
+    <form action="/checkout-store" method="POST">
+        <h1>Awesome product</h1>
+        <p>Price: $5</p>
+
+        <button type="submit">Checkout</button>
+    </form>
+
+    <br/>
+    <br/>
+
+    <h2>Deposit</h2>
+    <p>Your balance: <span id="balance">...</span></p>
+    <form action="/checkout-deposit" method="POST">
+        <button type="submit">Deposit</button>
+    </form>
+
+    <script>
+        async function updateBalance() {
+            const res = await fetch('/balance')
+            const data = await res.json()
+            const elem = document.getElementById('balance')
+            if (data == null) {
+                elem.textContent = '-'
+            }
+
+            elem.textContent = `$${data}`
+        }
+
+        updateBalance()
+        setInterval(() => {
+            updateBalance()
+        }, 10000)
+    </script>
+</body>
+</html>
