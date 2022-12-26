@@ -15,7 +15,7 @@ const app = express()
 app.use(express.static('public'))
 
 app.get('/balance', async (req, res) => {
-	const coin = 'USD_MULTI1'
+	const coin = 'USD_MULTI_1'
 	const balances = await repaya.balances.getAll(depositFormId, {
 		customerId: 'user_42',
 		coin
@@ -53,7 +53,7 @@ app.post('/checkout-store', async (req, res) => {
         	name: 'Awesome product'
       	},
       	price: {
-        	USD_MULTI1: '5.0',
+        	USD_MULTI_1: '5.0',
      	}
     })
   
